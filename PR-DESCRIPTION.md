@@ -12,6 +12,20 @@ Not published. Awaiting both founders’ approval. This remains a draft on `draf
 - Privacy notice, security headers/CSP, local social assets, robots, 404 and signup response pages remain. One unset `CANONICAL_ORIGIN` constant controls future metadata/sitemap; no domain is guessed.
 - Removed tracked `review/`. Screenshots are attached below; audit output and test dependencies stay outside the repository and FINAL release zip.
 
+## Round 3 staging and checks
+
+Hosting access checked. Details are kept in the private notes, not in this repo.
+
+Web PHP 8.3.33 matches CLI PHP 8.3.33. The web mail function is available. One authorised test message returned: sent. The unguessable temporary PHP probe printed only version and mail availability, was immediately deleted, and returned HTTPS 404 on the removal check. No phpinfo or private configuration values were exposed.
+
+A backup of the existing live site is stored in a restricted private backup area outside the public directory. The runtime-only FINAL zip and extracted release are in a separate restricted staging area outside the public directory. The zip checksum matches after upload. It contains 19 runtime files and excludes docs, tests, review output, screenshots, private configuration and secrets. Noindex and the disabled form are retained; the private configuration is unchanged with enabled=false.
+
+Live file checksums match the pre-check snapshot. Nothing was switched live, merged, pushed to main, or enabled. No Pages, CNAME, DNS or email-routing change occurred. Staging does not itself publish anything. Switching live and enabling signup wait for a separate direct go from the owner; approval records are maintained outside this repo.
+
+Rollback now: remove the isolated staged release; the live site needs no restoration because it was not replaced. If a later authorised release needs rollback, restore the saved pre-release backup under a separate authorised operation. Private notes record the locations and checksums.
+
+Older commits still contain the earlier hosting wording. A normal commit removed it from the current files; no history rewrite or force-push occurred.
+
 ## Round 2 completion
 
 - Lowercase `.self` throughout pages, metadata, accessibility names, PHP messages and notification content, docs and the local OG image. Stable code paths and environment names retained. Repository scan found no capitalised product-name occurrences.
@@ -23,7 +37,7 @@ Not published. Awaiting both founders’ approval. This remains a draft on `draf
 
 The original v2 zip is unavailable, so exact restoration could not be verified. The user explicitly authorised recreation from the current page; founders have not approved its design or tile choice.
 
-The actual domain account and web-root are reachable by SSH. PHP 8.3.33 executes there and `function_exists('mail')` is true in CLI. Web PHP version and real delivery remain unverified; no test email was sent. After explicit user authorisation, a private config was created outside the website’s public directory with the supplied recipient, enabled=false and permissions 600. Other necessary configuration values remain unset. Recipient details are absent from the repository, tests, documentation and PR. This config does not authorise collection or mailbox routing; board CHANGE 0.1.16 remains pending. Public server files and the live website are unchanged.
+Earlier CLI checks confirmed PHP 8.3.33 and mail-function availability; the current web and mail results are recorded above. After explicit user authorisation, a private config was created outside the website’s public directory with the supplied recipient, enabled=false and permissions 600. Other necessary configuration values remain unset. Recipient details are absent from the repository, tests, documentation and PR. This config does not authorise collection or mailbox routing; board CHANGE 0.1.16 remains pending. Public server files and the live website are unchanged.
 
 ## Validation
 
@@ -41,7 +55,7 @@ The actual domain account and web-root are reachable by SSH. PHP 8.3.33 executes
 
 Axe incomplete contrast checks were manually inspected with calculated palette contrast; they are not automated passes or WCAG certification. 640 CSS pixel reflow was checked as a 200% equivalent. Native browser zoom and screen-reader sign-off remain manual. See TEST-RESULTS.md for reproduction and limitations.
 
-Read-only SSH reached the actual .self web-root. PHP 8.3.33 and the mail function are available in CLI; web PHP, actual mail delivery, deployed headers/permissions and trusted client-address handling remain unverified. No email was sent or server file written for these checks.
+Read-only SSH reached the actual .self web-root. PHP 8.3.33 and the mail function are available in CLI; receipt of the test message, staged web headers and trusted client-address handling remain unverified. The earlier read-only CLI checks wrote no server files. Round 3 performed the separately authorised probe and isolated staging described above.
 
 ## Screenshots
 
@@ -91,7 +105,7 @@ Round 2 captures: header, hero, tiles, privacy band and footer at each requested
 
 ## Release boundary
 
-The live Hostinger site is unchanged. No merge, deployment, Pages, CNAME, DNS/email routing or mailbox changes occurred. Signup remains off for board CHANGE 0.1.16. Both founders’ approval and a separate explicit deployment decision are required. A runtime-only FINAL zip is prepared for non-live staging; founder approval is still pending.
+The live Hostinger site is unchanged. No merge, live deployment, Pages, CNAME, DNS/email routing or mailbox changes occurred. Signup remains off for board CHANGE 0.1.16. A separate direct live-switch and collection decision is required. A runtime-only FINAL zip is prepared for non-live staging; founder approval is still pending.
 
 ## Every remaining [PLACEHOLDER]
 

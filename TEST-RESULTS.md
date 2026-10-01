@@ -1,6 +1,6 @@
 # Draft checks, 1 October 2026
 
-Checks were run against the local design preview. No Hostinger deployment or live mail test took place.
+Checks were run against the local design preview. These layout checks preceded the separately authorised non-live staging and single mail test described below.
 
 | Check | Result |
 | --- | --- |
@@ -52,3 +52,17 @@ All 30 PHP cases and browser audits were re-run. Axe reports zero violations, Li
 Read-only host verification again reached the actual domain web-root and confirmed CLI PHP 8.3.33 and mail-function availability. No email was sent; delivery and web PHP remain unverified. Separately, the user authorised creating only the private server config outside the website’s public directory: recipient set privately, enabled=false, mode 600, all other required values unset. No public server file, DNS, routing or deployment changed. Founder approval remains pending.
 
 Hosting access checked. Details are kept in the private notes, not in this repo. Older commits still contain the previous hosting wording; this normal commit does not rewrite history.
+
+## Round 3 hosting checks and staging
+
+Hosting access checked. Details are kept in the private notes, not in this repo.
+
+Web PHP 8.3.33 matches CLI PHP 8.3.33. The web mail function is available. One authorised test message returned: sent. The unguessable temporary PHP probe printed only version and mail availability, was immediately deleted, and returned HTTPS 404 on the removal check. No phpinfo or private configuration values were exposed.
+
+A backup of the existing live site is stored in a restricted private backup area outside the public directory. The runtime-only FINAL zip and extracted release are in a separate restricted staging area outside the public directory. The zip checksum matches after upload. It contains 19 runtime files and excludes docs, tests, review output, screenshots, private configuration and secrets. Noindex and the disabled form are retained; the private configuration is unchanged with enabled=false.
+
+Live file checksums match the pre-check snapshot. Nothing was switched live, merged, pushed to main, or enabled. No Pages, CNAME, DNS or email-routing change occurred. Staging does not itself publish anything. Switching live and enabling signup wait for a separate direct go from the owner; approval records are maintained outside this repo.
+
+Rollback now: remove the isolated staged release; the live site needs no restoration because it was not replaced. If a later authorised release needs rollback, restore the saved pre-release backup under a separate authorised operation. Private notes record the locations and checksums.
+
+Older commits still contain the earlier hosting wording. A normal commit removed it from the current files; no history rewrite or force-push occurred.

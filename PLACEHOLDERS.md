@@ -1,6 +1,6 @@
 # Remaining decisions
 
-Not published. Awaiting both founders’ approval. The page has no draft-status banner; this does not authorise publication or collection.
+Not published. Awaiting a separate direct live-switch and collection decision. The page has no draft-status banner; this does not authorise publication or collection.
 
 Every visible or code-comment [PLACEHOLDER] is grouped below; the same decisions appear on multiple pages through shared metadata. All must be resolved before collection/publication as applicable.
 
@@ -23,6 +23,8 @@ Every visible or code-comment [PLACEHOLDER] is grouped below; the same decisions
 - [PLACEHOLDER] Original v2 draft zip is unavailable; user authorised recreation from the current page. Founders still need to approve the visual layout.
 - [PLACEHOLDER] Board approval of temporary signup-mail routing; recipient remains a private configuration decision and signup stays disabled.
 
-Additional approval/validation gates without invented values: unsigned team copy, visual design, .self web PHP 8.3, host mail behaviour, live security headers, cleanup schedule, rate-data physical retention, list deletion procedure, trusted client-address setup, and final manual assistive-technology review. Both founders’ board approval and explicit deployment authorisation remain required.
+Additional approval/validation gates without invented values: unsigned team copy, visual design, .self live security headers, mailbox receipt, cleanup schedule, rate-data physical retention, list deletion procedure, trusted client-address setup, and final manual assistive-technology review. Both founders’ board approval and explicit deployment authorisation remain required.
 
 Hosting access checked. Details are kept in the private notes, not in this repo. Older commits retain prior hosting wording; history has not been rewritten.
+
+Web PHP 8.3.33 and mail-function availability were verified. One mail test returned sent; the probe is deleted and returns 404. Isolated staging and the pre-release backup are outside the public directory. Live files and the disabled private config are unchanged.

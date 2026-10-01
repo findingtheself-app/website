@@ -1,6 +1,6 @@
 # .self website: draft only
 
-This public website branch is for review. No deployment, merge, Pages enablement, domain configuration, mailbox creation or routing changes are authorised. The current Hostinger site remains unchanged. Both founders must approve the design, copy, privacy and sign-up route on the board before a separate release decision. Sign-up remains off for board CHANGE 0.1.16.
+This public website branch is for review. An isolated staged release is prepared. Live publication, merge, Pages enablement, domain configuration, mailbox creation and routing changes are not authorised. The current Hostinger site remains unchanged. Approval records are maintained privately; a separate direct live-switch and collection decision is still required. Sign-up remains off for board CHANGE 0.1.16.
 
 ## Reference and scope
 
@@ -12,7 +12,15 @@ The private app repository was not accessed. The requested on-device privacy wor
 
 Hosting access checked. Details are kept in the private notes, not in this repo.
 
-CLI PHP 8.3.33 and mail-function availability were checked. Web PHP and delivery remain unverified. A disabled private signup configuration exists outside the public directory. Older commits still contain previous hosting wording; history has not been rewritten.
+Web PHP 8.3.33 matches CLI PHP 8.3.33. The web mail function is available. One authorised test message returned: sent. The unguessable temporary PHP probe printed only version and mail availability, was immediately deleted, and returned HTTPS 404 on the removal check. No phpinfo or private configuration values were exposed.
+
+A backup of the existing live site is stored in a restricted private backup area outside the public directory. The runtime-only FINAL zip and extracted release are in a separate restricted staging area outside the public directory. The zip checksum matches after upload. It contains 19 runtime files and excludes docs, tests, review output, screenshots, private configuration and secrets. Noindex and the disabled form are retained; the private configuration is unchanged with enabled=false.
+
+Live file checksums match the pre-check snapshot. Nothing was switched live, merged, pushed to main, or enabled. No Pages, CNAME, DNS or email-routing change occurred. Staging does not itself publish anything. Switching live and enabling signup wait for a separate direct go from the owner; approval records are maintained outside this repo.
+
+Rollback now: remove the isolated staged release; the live site needs no restoration because it was not replaced. If a later authorised release needs rollback, restore the saved pre-release backup under a separate authorised operation. Private notes record the locations and checksums.
+
+Older commits still contain the earlier hosting wording. A normal commit removed it from the current files; no history rewrite or force-push occurred.
 
 ## Sign-up implementation
 
