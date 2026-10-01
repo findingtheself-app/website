@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+# [PLACEHOLDER] Remain blocked until launch approval; confirm canonical origin.

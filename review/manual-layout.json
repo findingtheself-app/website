@@ -1,0 +1,108 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "overflow": false,
+      "focus": "main",
+      "clippedText": [],
+      "skip": {
+        "text": "Skip to content",
+        "outline": "3px"
+      },
+      "errors": []
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "focus": "main",
+      "clippedText": [],
+      "skip": {
+        "text": "Skip to content",
+        "outline": "3px"
+      },
+      "errors": []
+    },
+    {
+      "width": 640,
+      "overflow": false,
+      "focus": "main",
+      "clippedText": [],
+      "skip": {
+        "text": "Skip to content",
+        "outline": "3px"
+      },
+      "errors": []
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "focus": "main",
+      "clippedText": [],
+      "skip": {
+        "text": "Skip to content",
+        "outline": "3px"
+      },
+      "errors": []
+    },
+    {
+      "width": 900,
+      "overflow": false,
+      "focus": "main",
+      "clippedText": [],
+      "skip": {
+        "text": "Skip to content",
+        "outline": "3px"
+      },
+      "errors": []
+    },
+    {
+      "width": 1280,
+      "overflow": false,
+      "focus": "main",
+      "clippedText": [],
+      "skip": {
+        "text": "Skip to content",
+        "outline": "3px"
+      },
+      "errors": []
+    }
+  ],
+  "contrast": [
+    {
+      "foreground": "#596159",
+      "background": "#FFF0DF",
+      "ratio": 5.728010353717649
+    },
+    {
+      "foreground": "#596159",
+      "background": "#F8F9F5",
+      "ratio": 6.05693185047529
+    },
+    {
+      "foreground": "#FFF0DF",
+      "background": "#60334F",
+      "ratio": 9.013170901847937
+    },
+    {
+      "foreground": "#FFF0DF",
+      "background": "#354C3E",
+      "ratio": 8.329917863122672
+    },
+    {
+      "foreground": "#354C3E",
+      "background": "#D8EADF",
+      "ratio": 7.430858212241498
+    },
+    {
+      "foreground": "#8A5906",
+      "background": "#F2E6CF",
+      "ratio": 4.838847464129698
+    },
+    {
+      "foreground": "#6A4FC0",
+      "background": "#E4DEF5",
+      "ratio": 4.600248139745246
+    }
+  ],
+  "note": "640 CSS pixels verifies reflow corresponding to 200% zoom at a 1280px viewport. Native assistive technology review remains required."
+}
