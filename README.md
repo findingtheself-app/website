@@ -1,4 +1,4 @@
-# .Self website
+# .self website
 
 Public website only. A design preview for a calm daily practice for body and mind, informed by the supplied v2 PDF and the later permission to redesign.
 

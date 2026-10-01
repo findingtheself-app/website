@@ -1,4 +1,4 @@
-# .Self website: draft only
+# .self website: draft only
 
 This public website branch is for review. No deployment, merge, Pages enablement, domain configuration, mailbox creation or routing changes are authorised. The current Hostinger site remains unchanged. Both founders must approve the design, copy, privacy and sign-up route on the board before a separate release decision. Sign-up remains off for board CHANGE 0.1.16.
 
@@ -10,9 +10,9 @@ The private app repository was not accessed. The requested on-device privacy wor
 
 ## Read-only hosting observations, 1 October 2026
 
-The existing bigredbox SSH account can list `domains/findingtheself.app/public_html`. It therefore covers the .Self domain directory; this does not establish permission to deploy. The bigredbox contact handler was read for its request validation and private-config pattern only. Its branding, recipient, relay and raw-address storage were not copied.
+The existing bigredbox SSH account can list `domains/findingtheself.app/public_html`. It therefore covers the .self domain directory; this does not establish permission to deploy. The bigredbox contact handler was read for its request validation and private-config pattern only. Its branding, recipient, relay and raw-address storage were not copied.
 
-Read-only SSH access reached `domains/findingtheself.app/public_html` itself. Default host CLI PHP was 8.2.33. `/opt/alt/php83/usr/bin/php` reported PHP 8.3.33 from that directory, with `mail()` available; it also linted the handler and maintenance script over stdin. Availability is not a delivery test. The .Self web runtime was not probed or changed. Confirm PHP 8.3 for this domain before deployment. No files were uploaded or changed on Hostinger. No test messages were sent through its mail system.
+Read-only SSH access reached `domains/findingtheself.app/public_html` itself. Default host CLI PHP was 8.2.33. `/opt/alt/php83/usr/bin/php` reported PHP 8.3.33 from that directory, with `mail()` available; it also linted the handler and maintenance script over stdin. Availability is not a delivery test. The .self web runtime was not probed or changed. Confirm PHP 8.3 for this domain before deployment. No files were uploaded or changed on Hostinger. No test messages were sent through its mail system.
 
 ## Sign-up implementation
 
@@ -27,7 +27,7 @@ Rate limits allow three accepted attempts per 24-hour window per salted HMAC of 
 ## A later approved deployment
 
 1. Resolve every item in `PLACEHOLDERS.md`, legal review and the board decision. Confirm domain, web PHP 8.3, mail sender/recipient, storage region, processor terms, rights and unsubscribe process, retention and host access-log policy.
-2. Take a full backup of the existing .Self web root and relevant configuration, record a checksum and confirm restore access. Protect backup files outside the web root. Do not touch other hosted sites, the private app, DNS, email routing or mailboxes.
+2. Take a full backup of the existing .self web root and relevant configuration, record a checksum and confirm restore access. Protect backup files outside the web root. Do not touch other hosted sites, the private app, DNS, email routing or mailboxes.
 3. Prepare a zip explicitly marked `FINAL` after approval. Include only public HTML, CSS, `signup.php`, `.htaccess`, `robots.txt`, `sitemap.xml` and `assets/` runtime images/SVGs. Exclude `assets/BADGE-README.md`, `config/`, `tests/`, docs, `.git`, audit output and any secrets. No FINAL zip has been prepared by this task.
 4. Copy the example configuration and maintenance script to a private directory outside `public_html`; for the default path this is the sibling `self-private/`. Set the configuration and private files to mode 600, the private directory and its `data/` directory to 700. Supply `OWNER_EMAIL`, approved sender, exact HTTPS origin, private data path and two different secrets generated independently with `bin2hex(random_bytes(32))`. Do not commit credentials. `SELF_SIGNUP_CONFIG` may override the private config path if the host supports it.
 5. Keep `enabled => false` while testing staging. Verify that public requests cannot access config, data, tests or review paths, including encoded URLs and direct file requests. Confirm `.htaccess` works under the domain’s Apache/LiteSpeed setup. Set `expose_php=Off` in the host PHP settings and verify X-Powered-By is absent. Validate actual CSP, frame denial, nosniff, referrer policy, HTTPS redirect, error handling and token `no-store` headers. A static local server cannot validate these headers.

@@ -26,7 +26,7 @@ for file in root.glob('*.html'):
             dest,_,anchor=href.partition('#'); target=root/(dest or file.name)
             assert target.is_file(),(file,href)
             if anchor: assert f'id="{anchor}"' in target.read_text(),(file,href)
-assert (root/'style.css').stat().st_size < 16500
+assert (root/'style.css').stat().st_size < 17500
 palette={'F8F9F5','202923','60334F','596159','D9DED5','E8F48C','354C3E','47223B','FDBA88','FFF0DF','8A5906','F2E6CF','2F7D55','D8EADF','6A4FC0','E4DEF5'}
 for color in re.findall(r'#([0-9a-fA-F]{6})(?:[0-9a-fA-F]{2})?(?![0-9a-fA-F])',(root/'style.css').read_text()): assert color.upper() in palette,color
 assert 'prefers-reduced-motion' in (root/'style.css').read_text()
@@ -60,8 +60,18 @@ for p in root.glob('*.html'):
     assert 'example.invalid' not in s
     assert not re.search(r'[\u2190-\u21ff\u27f0-\u27ff\u2900-\u297f]|&(?:nearr|rarr|darr|harr);',s)
     assert '<div class="draft"' not in s and 'preview' not in s.lower()
-    assert '<img src="assets/badge-slant.svg" alt=".Self" width="44" height="44">' in s
+    assert '<img src="assets/badge-slant.svg" alt=".self" width="44" height="44">' in s
     assert '© 2026 findingtheself' in s
 assert 'AES-256-GCM' in (root/'index.html').read_text() and 'Argon2id' in (root/'index.html').read_text()
 assert not (root/'review').exists()
 print('PASS: exact outlined badge paths, SVG safety, PNG sizes, unified origin constant, arrows/status removed, badge usage, privacy wording, review files absent')
+
+for p in root.rglob("*"):
+    if p.is_file() and ".git" not in p.parts and p.suffix in {".html",".php",".md",".svg"}:
+        assert not re.search(r"\.self",p.read_text(),re.I) or not re.search(r"\.self",p.read_text().replace(".self",""),re.I),p
+assert "Words hidden" not in (root/"index.html").read_text()
+assert (root/"index.html").read_text().count("<li><p>")==4
+
+outline=ET.parse(root/"assets/badge-slant-outline.svg").getroot()
+assert outline.find('.//s:path[@fill="#FFFFFF"]',ns).attrib==paths[0]
+assert outline.find(".//s:rect",ns).attrib["stroke"]=="#FFF0DF"

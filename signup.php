@@ -2,7 +2,7 @@
 declare(strict_types=1);
 // Disabled unless a founder-approved private configuration explicitly enables it.
 const CONSENT_VERSION = 'launch-v1';
-const CONSENT_TEXT = 'I agree to receive emails about the .Self launch and early access. I can withdraw my consent at any time.';
+const CONSENT_TEXT = 'I agree to receive emails about the .self launch and early access. I can withdraw my consent at any time.';
 const MAX_AGE = 86400;
 const MIN_AGE = 3;
 const RATE_LIMIT = 3;
@@ -105,7 +105,7 @@ if ($method === 'GET') {
     $form = substr($form, 0, strpos($form, '</form>') + 7);
     $form = str_replace(['<fieldset disabled>', 'name="time_token" type="hidden" value=""', 'Sign-up opens after approval', 'No details are collected while sign-up is closed.'],
         ['<fieldset>', 'name="time_token" type="hidden" value="' . $token . '"', 'Keep me in the loop', 'You can withdraw consent at any time.'], $form);
-    echo '<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>.Self | Early access</title><link rel="stylesheet" href="style.css"><link rel="icon" href="assets/favicon.svg"></head><body><a class="skip" href="#main">Skip to content</a><header class="header wrap"><a class="logo" href="index.html" aria-label=".Self home"><img src="assets/badge-slant.svg" alt=".Self" width="44" height="44"></a></header><main id="main" tabindex="-1" class="document wrap"><h1>Be here from<br><em>the beginning.</em></h1><p id="signup-status" role="status" aria-live="polite">Hear about the .Self launch and early access. Please take a moment to read the privacy notice before signing up.</p><div class="form-card">' . $form . '</div></main>' . $footer;
+    echo '<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>.self | Early access</title><link rel="stylesheet" href="style.css"><link rel="icon" href="assets/favicon.svg"></head><body><a class="skip" href="#main">Skip to content</a><header class="header wrap"><a class="logo" href="index.html" aria-label=".self home"><img src="assets/badge-slant.svg" alt=".self" width="44" height="44"></a></header><main id="main" tabindex="-1" class="document wrap"><h1>Be here from<br><em>the beginning.</em></h1><p id="signup-status" role="status" aria-live="polite">Hear about the .self launch and early access. Please take a moment to read the privacy notice before signing up.</p><div class="form-card">' . $form . '</div></main>' . $footer;
     exit;
 }
 if ($method !== 'POST') { header('Allow: GET, POST'); respond(405); }
@@ -136,8 +136,8 @@ try {
     } finally { flock($h, LOCK_UN); fclose($h); }
     $headers = ['From' => $from, 'Content-Type' => 'text/plain; charset=UTF-8'];
     // User fields go in the body only, never into email headers.
-    $body = "New .Self launch interest\nEmail: " . $email . "\nFirst name: " . $name . "\nConsent: " . CONSENT_VERSION . "\n" . CONSENT_TEXT;
-    try { $sent = @mail($owner, '.Self launch interest', $body, $headers); } catch (Throwable $e) { $sent = false; }
+    $body = "New .self launch interest\nEmail: " . $email . "\nFirst name: " . $name . "\nConsent: " . CONSENT_VERSION . "\n" . CONSENT_TEXT;
+    try { $sent = @mail($owner, '.self launch interest', $body, $headers); } catch (Throwable $e) { $sent = false; }
     if (!$sent) recordFailure($dir, 'mail_failed_interest_saved');
     respond(200, true);
 } catch (Throwable $e) { recordFailure($dir, 'storage_failed'); respond(503); }

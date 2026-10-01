@@ -227,3 +227,20 @@ main{overflow:clip}
 .why{position:relative}
 .screen-title,.screen-subtitle{font-weight:600}
 @media(min-width:701px) and (max-width:1000px){.hero{grid-template-columns:1fr 1fr;gap:24px}.hero-art{padding-inline:12px}.today-phone{width:240px}.floating-note{padding:16px 18px}.floating-note em{font-size:20px}.tile{padding:28px}.tile-badge{width:140px;height:140px;margin:26px 26px 52px}}
+
+/* Round 2: four plain privacy steps, one roadmap badge and unified footer lockup. */
+.tile-text-only>div{margin-top:auto}
+.privacy-band{background:var(--forest);color:var(--cream);margin-block:0 96px;padding-block:76px}
+.privacy-band .privacy-section{padding-block:0;gap:64px}
+.privacy-band .privacy-copy{order:1}
+.privacy-band .privacy-art{order:2;background:transparent}
+.privacy-band .privacy-copy p,.privacy-band .eyebrow,.privacy-band .text-link{color:var(--cream)}
+.privacy-steps{list-style:none;counter-reset:privacy;padding:0;margin:28px 0}
+.privacy-steps li{counter-increment:privacy;display:grid;grid-template-columns:28px 1fr;gap:14px;margin-block:18px}
+.privacy-steps li::before{content:counter(privacy);font-size:14px;border-top:1px solid currentColor;padding-top:5px}
+.privacy-steps p{font-size:15px;margin:0}
+.footer-lockup{gap:5px;align-items:baseline}
+.footer-lockup img{align-self:center}
+@media(max-width:700px){.privacy-band{padding-block:52px;margin-bottom:58px}.privacy-band .privacy-section{gap:30px}.privacy-band .privacy-art{min-height:410px}}
+.privacy-band h2 em{color:var(--cream)}
+.privacy-band .privacy-art>.zen{stroke:var(--cream);opacity:.18}

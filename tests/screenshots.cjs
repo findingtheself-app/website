@@ -7,7 +7,7 @@ const {chromium}=require(path.join(process.env.SELF_BROWSER_MODULES || process.e
  for(const width of [390,768,1280]){
   const page=await browser.newPage({viewport:{width,height:900},reducedMotion:'reduce'});
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
-  for(const [name,selector] of [['header','.header'],['hero','.hero'],['tiles','.now-next'],['footer','.footer'],['food','.food-row'],['movement','.movement-row'],['stillness','.stillness-row']]){
+  for(const [name,selector] of [['header','.header'],['hero','.hero'],['tiles','.now-next'],['privacy','.privacy-band'],['footer','.footer'],['food','.food-row'],['movement','.movement-row'],['stillness','.stillness-row']]){
    await page.locator(selector).screenshot({path:path.join(output,`${name}-${width}.png`)});
   }
   const result=await page.evaluate(()=>{
@@ -18,10 +18,12 @@ const {chromium}=require(path.join(process.env.SELF_BROWSER_MODULES || process.e
    const phones=[...document.querySelectorAll('.screen-field .phone')].map(e=>({label:e.getAttribute('aria-label'),insideViewport:rect(e).left>=0&&rect(e).right<=innerWidth,fieldOverflow:getComputedStyle(e.parentElement).overflow,bodyOverflow:e.scrollHeight>e.clientHeight}));
    const detail=document.querySelector('.footer-details');
    const footerAligned=[...detail.children].every(e=>Math.abs(rect(e).left-rect(detail).left)<1);
-   return {overlap,phones,footerAligned};
+   const captionOverlap=[...document.querySelectorAll('.illustration-label')].filter(c=>[...c.parentElement.querySelectorAll('.phone-nav')].some(n=>intersects(rect(c),rect(n)))).map(c=>c.textContent);
+   return {overlap,phones,footerAligned,captionOverlap};
   });
   assert.deepEqual(result.overlap,[],`Hero note overlaps screen text at ${width}px`);
   assert.ok(result.phones.every(p=>p.insideViewport&&p.fieldOverflow==='visible'&&!p.bodyOverflow),`Phone clipping at ${width}px`);
+  assert.deepEqual(result.captionOverlap,[],`Caption covers tab bar at ${width}px`);
   assert.ok(result.footerAligned,`Footer left edges do not align at ${width}px`);
   geometry.push({width,...result});await page.close();
  }
