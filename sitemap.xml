@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- [PLACEHOLDER] Replace example.invalid only after canonical domain approval. -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://example.invalid/</loc></url><url><loc>https://example.invalid/privacy.html</loc></url></urlset>
+<!-- [PLACEHOLDER] CANONICAL_ORIGIN is unset. Render URLs only after the domain decision. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" />

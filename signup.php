@@ -100,11 +100,12 @@ if ($method === 'GET') {
     header('Content-Type: text/html; charset=utf-8');
     // Native, no-JS form. A fresh signed token is minted per page view, never cached.
     $html = file_get_contents(__DIR__ . '/index.html');
+    $footer = substr($html, strpos($html, '<footer class="footer wrap">'));
     $form = substr($html, strpos($html, '<form method='));
     $form = substr($form, 0, strpos($form, '</form>') + 7);
-    $form = str_replace(['<fieldset disabled>', 'name="time_token" type="hidden" value=""', 'Sign-up opens after approval', 'No details are collected in this preview.'],
+    $form = str_replace(['<fieldset disabled>', 'name="time_token" type="hidden" value=""', 'Sign-up opens after approval', 'No details are collected while sign-up is closed.'],
         ['<fieldset>', 'name="time_token" type="hidden" value="' . $token . '"', 'Keep me in the loop', 'You can withdraw consent at any time.'], $form);
-    echo '<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>.Self | Early access</title><link rel="stylesheet" href="style.css"><link rel="icon" href="assets/favicon.svg"></head><body><a class="skip" href="#main">Skip to content</a><header class="header wrap"><a class="logo" href="index.html">.Self</a></header><main id="main" tabindex="-1" class="document wrap"><h1>Be here from<br><em>the beginning.</em></h1><p id="signup-status" role="status" aria-live="polite">Hear about the .Self launch and early access. Please take a moment to read the privacy notice before signing up.</p><div class="form-card">' . $form . '</div></main></body></html>';
+    echo '<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>.Self | Early access</title><link rel="stylesheet" href="style.css"><link rel="icon" href="assets/favicon.svg"></head><body><a class="skip" href="#main">Skip to content</a><header class="header wrap"><a class="logo" href="index.html" aria-label=".Self home"><img src="assets/badge-slant.svg" alt=".Self" width="44" height="44"></a></header><main id="main" tabindex="-1" class="document wrap"><h1>Be here from<br><em>the beginning.</em></h1><p id="signup-status" role="status" aria-live="polite">Hear about the .Self launch and early access. Please take a moment to read the privacy notice before signing up.</p><div class="form-card">' . $form . '</div></main>' . $footer;
     exit;
 }
 if ($method !== 'POST') { header('Allow: GET, POST'); respond(405); }

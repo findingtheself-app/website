@@ -1,10 +1,14 @@
 # Remaining decisions
 
+Not published. Awaiting both founders’ approval. The page has no draft-status banner; this does not authorise publication or collection.
+
 Every visible or code-comment [PLACEHOLDER] is grouped below; the same decisions appear on multiple pages through shared metadata. All must be resolved before collection/publication as applicable.
 
-- [PLACEHOLDER] Canonical domain and absolute social-image URLs on all five HTML pages; replace `example.invalid` in metadata and sitemap. Confirm the robots policy at approved launch.
+- [PLACEHOLDER] Domain decision: set `CANONICAL_ORIGIN` in `config/site.json` only after approval, then render metadata/sitemap with `tests/render-metadata.py`. It is currently null; no domain is guessed. Keep indexing blocked until approved launch.
 - [PLACEHOLDER] Both founders to confirm “Now and next” wording, including the planned date, sign-in/sync and later Gather scope.
-- [PLACEHOLDER] Detailed app privacy wording against the current security design. No private app access occurred; no detailed encryption claims were changed or invented.
+- [PLACEHOLDER] founders to confirm privacy wording against security-design.md before launch. Supplied on-device wording is restored; no private app access or independent crypto audit occurred.
+- [PLACEHOLDER] Founders to confirm the lowercase `.self` badge with `.Self` as the name in running text.
+- [PLACEHOLDER] Confirm `findingtheself` as the future company name; footer copyright does not resolve the legal-controller placeholder.
 - [PLACEHOLDER] Legal entity/controller and contact address.
 - [PLACEHOLDER] Hostinger’s own access logs, processing and retention; do not equate application-level hashed rate data with no host-level logging.
 - [PLACEHOLDER] Hostinger processor approval for hosting and mail delivery, and processor terms.

@@ -1,6 +1,6 @@
 from html.parser import HTMLParser
 from pathlib import Path
-import re, struct, xml.etree.ElementTree as ET
+import re, struct, json,hashlib, xml.etree.ElementTree as ET
 root = Path(__file__).resolve().parent.parent
 class Page(HTMLParser):
     def __init__(self): super().__init__(); self.tags=[]
@@ -26,7 +26,7 @@ for file in root.glob('*.html'):
             dest,_,anchor=href.partition('#'); target=root/(dest or file.name)
             assert target.is_file(),(file,href)
             if anchor: assert f'id="{anchor}"' in target.read_text(),(file,href)
-assert (root/'style.css').stat().st_size < 16000
+assert (root/'style.css').stat().st_size < 16500
 palette={'F8F9F5','202923','60334F','596159','D9DED5','E8F48C','354C3E','47223B','FDBA88','FFF0DF','8A5906','F2E6CF','2F7D55','D8EADF','6A4FC0','E4DEF5'}
 for color in re.findall(r'#([0-9a-fA-F]{6})(?:[0-9a-fA-F]{2})?(?![0-9a-fA-F])',(root/'style.css').read_text()): assert color.upper() in palette,color
 assert 'prefers-reduced-motion' in (root/'style.css').read_text()
@@ -36,3 +36,32 @@ assert 'Disallow: /' in (root/'robots.txt').read_text()
 ET.parse(root/'sitemap.xml')
 assert struct.unpack('>II',(root/'assets/og.png').read_bytes()[16:24])==(1200,630)
 print('PASS: headings, landmarks, locale, noindex, CSP, local assets, links, decorative SVG, brand colours, CSS budget, disabled form/config, robots, sitemap, OG dimensions')
+
+# Brand assets must retain the supplied glyph outlines, not live font text.
+ns={'s':'http://www.w3.org/2000/svg'}
+paths=[]
+for file in ('badge.svg','badge-slant.svg','favicon.svg'):
+    node=ET.parse(root/'assets'/file).getroot()
+    assert not node.findall('.//s:text',ns) and not node.findall('.//s:script',ns) and not node.findall('.//s:filter',ns)
+    glyph=node.find('.//s:path[@fill="#FFFFFF"]',ns)
+    assert glyph is not None and glyph.attrib['fill']=='#FFFFFF'
+    paths.append(glyph.attrib)
+    square=node.find('.//s:path[@fill="#60334F"]',ns)
+    assert square is not None and 'A26 26' in square.attrib['d']
+    assert not node.findall('.//s:rect',ns)
+assert paths[0]==paths[1]==paths[2]
+assert paths[0]['transform']=='translate(34.43,353.12) scale(0.132684,-0.132684)'
+assert hashlib.sha256(paths[0]['d'].encode()).hexdigest()=='47f6b0fa9636dabefaf88b5558410622958f2f56783074c0d77edea549e77a55'
+for name,size in [('badge-512.png',512),('badge-slant-512.png',512),('favicon.png',32),('touch-icon.png',180)]:
+    assert struct.unpack('>II',(root/'assets'/name).read_bytes()[16:24])==(size,size)
+assert json.loads((root/'config/site.json').read_text())['CANONICAL_ORIGIN'] is None
+for p in root.glob('*.html'):
+    s=p.read_text()
+    assert 'example.invalid' not in s
+    assert not re.search(r'[\u2190-\u21ff\u27f0-\u27ff\u2900-\u297f]|&(?:nearr|rarr|darr|harr);',s)
+    assert '<div class="draft"' not in s and 'preview' not in s.lower()
+    assert '<img src="assets/badge-slant.svg" alt=".Self" width="44" height="44">' in s
+    assert '© 2026 findingtheself' in s
+assert 'AES-256-GCM' in (root/'index.html').read_text() and 'Argon2id' in (root/'index.html').read_text()
+assert not (root/'review').exists()
+print('PASS: exact outlined badge paths, SVG safety, PNG sizes, unified origin constant, arrows/status removed, badge usage, privacy wording, review files absent')

@@ -37,7 +37,7 @@ try{
  setConfig({...goodConfig,data_dir:pub});
  await check('Storage within the web root is rejected',async()=>assert.equal((await request()).httpStatusCode,503));
  setConfig(goodConfig);
- await check('Enabled GET mints a signed token and native form',async()=>{const r=await request();assert.equal(r.httpStatusCode,200);assert.match(r.text,/<form method="post" action="signup.php"/);assert.match(r.text,/name="time_token" type="hidden" value="\d{10}\.[a-f0-9]{32}\.[a-f0-9]{64}"/);assert.ok(!r.text.includes('<fieldset disabled>'));assert.equal(r.headers['cache-control'][0],'no-store')});
+ await check('Enabled GET mints a signed token and native form',async()=>{const r=await request();assert.equal(r.httpStatusCode,200);assert.match(r.text,/<form method="post" action="signup.php"/);assert.match(r.text,/name="time_token" type="hidden" value="\d{10}\.[a-f0-9]{32}\.[a-f0-9]{64}"/);assert.ok(!r.text.includes('<fieldset disabled>'));assert.equal(r.headers['cache-control'][0],'no-store');assert.match(r.text,/© 2026 findingtheself/)});
  await check('Unsupported methods rejected',async()=>assert.equal((await request('PUT')).httpStatusCode,405));
  for(const [label,values,server,status] of [
   ['Cross-origin rejected',fields(),{HTTP_ORIGIN:'https://evil.example'},403],
