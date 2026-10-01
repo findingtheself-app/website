@@ -23,7 +23,7 @@ Not published. Awaiting both founders’ approval. This remains a draft on `draf
 
 The original v2 zip is unavailable, so exact restoration could not be verified. The user explicitly authorised recreation from the current page; founders have not approved its design or tile choice.
 
-The actual domain account and web-root are reachable by SSH. PHP 8.3.33 executes there and `function_exists('mail')` is true in CLI. Web PHP version and real delivery remain unverified; no test email was sent. After explicit user authorisation, a private config was created outside public_html with the supplied recipient, enabled=false and permissions 600. Other necessary configuration values remain unset. Recipient details are absent from the repository, tests, documentation and PR. This config does not authorise collection or mailbox routing; board CHANGE 0.1.16 remains pending. Public server files and the live website are unchanged.
+The actual domain account and web-root are reachable by SSH. PHP 8.3.33 executes there and `function_exists('mail')` is true in CLI. Web PHP version and real delivery remain unverified; no test email was sent. After explicit user authorisation, a private config was created outside the website’s public directory with the supplied recipient, enabled=false and permissions 600. Other necessary configuration values remain unset. Recipient details are absent from the repository, tests, documentation and PR. This config does not authorise collection or mailbox routing; board CHANGE 0.1.16 remains pending. Public server files and the live website are unchanged.
 
 ## Validation
 
@@ -91,7 +91,7 @@ Round 2 captures: header, hero, tiles, privacy band and footer at each requested
 
 ## Release boundary
 
-The live Hostinger site is unchanged. No merge, deployment, Pages, CNAME, DNS/email routing or mailbox changes occurred. Signup remains off for board CHANGE 0.1.16. Both founders’ approval and a separate explicit deployment decision are required. No FINAL release zip was produced.
+The live Hostinger site is unchanged. No merge, deployment, Pages, CNAME, DNS/email routing or mailbox changes occurred. Signup remains off for board CHANGE 0.1.16. Both founders’ approval and a separate explicit deployment decision are required. A runtime-only FINAL zip is prepared for non-live staging; founder approval is still pending.
 
 ## Every remaining [PLACEHOLDER]
 
@@ -114,3 +114,5 @@ The live Hostinger site is unchanged. No merge, deployment, Pages, CNAME, DNS/em
 - [PLACEHOLDER] Board approval of temporary signup-mail routing; recipient remains a private configuration decision and signup stays disabled.
 
 Additional approval/validation gates without invented values: unsigned team copy, visual design, .self web PHP 8.3, host mail behaviour, live security headers, cleanup schedule, rate-data physical retention, list deletion procedure, trusted client-address setup, and final manual assistive-technology review. Both founders’ board approval and explicit deployment authorisation remain required.
+
+Hosting access checked. Details are kept in the private notes, not in this repo. Older commits still contain the previous hosting wording; this normal commit does not rewrite history.

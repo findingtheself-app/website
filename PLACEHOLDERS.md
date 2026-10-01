@@ -24,3 +24,5 @@ Every visible or code-comment [PLACEHOLDER] is grouped below; the same decisions
 - [PLACEHOLDER] Board approval of temporary signup-mail routing; recipient remains a private configuration decision and signup stays disabled.
 
 Additional approval/validation gates without invented values: unsigned team copy, visual design, .self web PHP 8.3, host mail behaviour, live security headers, cleanup schedule, rate-data physical retention, list deletion procedure, trusted client-address setup, and final manual assistive-technology review. Both founders’ board approval and explicit deployment authorisation remain required.
+
+Hosting access checked. Details are kept in the private notes, not in this repo. Older commits retain prior hosting wording; history has not been rewritten.

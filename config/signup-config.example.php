@@ -1,5 +1,5 @@
 <?php
-// Template only. Copy OUTSIDE public_html as self-private/signup-config.php.
+// Template only. Copy outside the website’s public directory.
 // [PLACEHOLDER] Configure all values privately after approval; never commit secrets.
 return [
     'enabled' => false,

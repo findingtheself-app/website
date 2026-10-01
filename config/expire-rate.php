@@ -1,5 +1,5 @@
 <?php
-// CLI-only daily maintenance. Deploy outside public_html, never as a web endpoint.
+// CLI-only daily maintenance. Deploy outside the website’s public directory, never as a web endpoint.
 declare(strict_types=1);
 if (PHP_SAPI !== 'cli') { http_response_code(404); exit; }
 umask(0077);
