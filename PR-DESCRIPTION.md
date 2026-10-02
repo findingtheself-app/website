@@ -7,7 +7,7 @@ The .self website is live after the owner’s direct instruction, confirmed SMTP
 - Approved controller/public-contact and 30-day retention/withdrawal wording in the privacy notice, lowercase .self throughout. The approved public contact is the sole exception to the earlier address restriction. Recipient configuration, SMTP credentials and infrastructure details remain private.
 - Public canonical/social metadata uses the supplied public origin; noindex retained. Homepage opens the signed native form. No submitted details are reflected in responses.
 - 32 signup tests and 7 SMTP protocol/config tests pass. Both PHP modules lint on PHP 8.3. Live Chrome checks at 390/1280px pass for home, privacy, thank-you and signup: no mixed content, overflow, page errors, cookies or local storage; zero automated axe violations. Local Lighthouse: 100/100/100/69, with crawlability intentionally blocked.
-- Real live test: HTTPS 200, one record saved privately with mode 600, no mail failure entry; separate arrival confirmation pending. Forged submit: clean 403, no reflection. Exactly two test messages this round; no further messages sent.
+- Real live test: HTTPS 200, one record saved privately with mode 600, no mail failure entry; owner confirmed receipt of the live signup email on 2 October 2026. Forged submit: clean 403, no reflection. Exactly two test messages this round; no further messages sent.
 - Fresh private backup taken before publication. Runtime-only FINAL zip contains 20 files; docs, tests, screenshots, review output, secrets and private config excluded. HTTPS pages, CSP, frame denial, nosniff, noindex, hidden PHP version header and denied direct mail-module access verified.
 
 Rollback: restore the private pre-release site backup and disabled signup config.
