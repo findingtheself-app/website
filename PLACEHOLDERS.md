@@ -4,7 +4,6 @@ Not published. Awaiting a separate direct live-switch and collection decision. T
 
 Every visible or code-comment [PLACEHOLDER] is grouped below; the same decisions appear on multiple pages through shared metadata. All must be resolved before collection/publication as applicable.
 
-- [PLACEHOLDER] Domain decision: set `CANONICAL_ORIGIN` in `config/site.json` only after approval, then render metadata/sitemap with `tests/render-metadata.py`. It is currently null; no domain is guessed. Keep indexing blocked until approved launch.
 - [PLACEHOLDER] Both founders to confirm “Now and next” wording, including the planned date, sign-in/sync and later Gather scope.
 - [PLACEHOLDER] founders to confirm privacy wording against security-design.md before launch. Supplied on-device wording is restored; no private app access or independent crypto audit occurred.
 - [PLACEHOLDER] Confirm `findingtheself` as the future company name; footer copyright does not resolve the legal-controller placeholder.
@@ -28,3 +27,5 @@ Additional approval/validation gates without invented values: unsigned team copy
 Hosting access checked. Details are kept in the private notes, not in this repo. Older commits retain prior hosting wording; history has not been rewritten.
 
 Web PHP 8.3.33 and mail-function availability were verified. One mail test returned sent; the probe is deleted and returns 404. Isolated staging and the pre-release backup are outside the public directory. Live files and the disabled private config are unchanged.
+
+The public canonical origin is now set from the supplied release brief; metadata and sitemap have been rendered. Noindex remains. Private infrastructure identifiers and mail settings remain only in private config.

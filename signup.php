@@ -93,6 +93,14 @@ if (!$owner || !filter_var($owner, FILTER_VALIDATE_EMAIL) || !$from || !filter_v
     || !is_string($origin) || !preg_match('~^https://[a-z0-9.-]+(?::[0-9]+)?$~D', $origin)
     || !is_string($secret) || strlen($secret) < 32 || !is_string($salt) || strlen($salt) < 32 || hash_equals($secret, $salt)
     || !$dir || !isOutside($dir, $root) || !isOutside($dir, __DIR__) || !is_writable($dir)) respond(503);
+$transport = $config['transport'] ?? 'mail';
+if (!in_array($transport, ['mail','smtp'], true)) respond(503);
+if ($transport === 'smtp') {
+    $smtp = $config['smtp'] ?? [];
+    if (!is_array($smtp) || !is_string($smtp['host'] ?? null) || !preg_match('/^[a-zA-Z0-9.-]+$/D', $smtp['host'])
+        || !in_array($smtp['port'] ?? 587, [465,587], true) || !is_string($smtp['username'] ?? null) || $smtp['username'] === ''
+        || !is_string($smtp['password'] ?? null) || $smtp['password'] === '' || ($smtp['from'] ?? null) !== $from) respond(503);
+}
 $method = $_SERVER['REQUEST_METHOD'] ?? '';
 if ($method === 'GET') {
     $payload = time() . '.' . bin2hex(random_bytes(16));
@@ -137,7 +145,13 @@ try {
     $headers = ['From' => $from, 'Content-Type' => 'text/plain; charset=UTF-8'];
     // User fields go in the body only, never into email headers.
     $body = "New .self launch interest\nEmail: " . $email . "\nFirst name: " . $name . "\nConsent: " . CONSENT_VERSION . "\n" . CONSENT_TEXT;
-    try { $sent = @mail($owner, '.self launch interest', $body, $headers); } catch (Throwable $e) { $sent = false; }
+    try {
+        if (($config['transport'] ?? 'mail') === 'smtp') {
+            require_once __DIR__ . '/mail-transport.php';
+            self_send_smtp($config['smtp'] ?? [], $owner, '.self launch interest', $body, $email);
+            $sent = true;
+        } else { $sent = @mail($owner, '.self launch interest', $body, $headers); }
+    } catch (Throwable $e) { $sent = false; }
     if (!$sent) recordFailure($dir, 'mail_failed_interest_saved');
     respond(200, true);
 } catch (Throwable $e) { recordFailure($dir, 'storage_failed'); respond(503); }

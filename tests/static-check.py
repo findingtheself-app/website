@@ -22,7 +22,7 @@ for file in root.glob('*.html'):
             assert (root/resource).is_file(),(file,resource)
         if tag=='a':
             href=attrs.get('href','')
-            if href.startswith('https://'): continue
+            if href.startswith(('https://','mailto:')): continue
             dest,_,anchor=href.partition('#'); target=root/(dest or file.name)
             assert target.is_file(),(file,href)
             if anchor: assert f'id="{anchor}"' in target.read_text(),(file,href)
@@ -30,7 +30,7 @@ assert (root/'style.css').stat().st_size < 17500
 palette={'F8F9F5','202923','60334F','596159','D9DED5','E8F48C','354C3E','47223B','FDBA88','FFF0DF','8A5906','F2E6CF','2F7D55','D8EADF','6A4FC0','E4DEF5'}
 for color in re.findall(r'#([0-9a-fA-F]{6})(?:[0-9a-fA-F]{2})?(?![0-9a-fA-F])',(root/'style.css').read_text()): assert color.upper() in palette,color
 assert 'prefers-reduced-motion' in (root/'style.css').read_text()
-assert '<fieldset disabled>' in (root/'index.html').read_text()
+assert '<template id="signup-form-template">' in (root/'index.html').read_text() and 'href="signup.php"' in (root/'index.html').read_text()
 assert "'enabled' => false" in (root/'config/signup-config.example.php').read_text()
 assert 'Disallow: /' in (root/'robots.txt').read_text()
 ET.parse(root/'sitemap.xml')
@@ -54,7 +54,8 @@ assert paths[0]['transform']=='translate(34.43,353.12) scale(0.132684,-0.132684)
 assert hashlib.sha256(paths[0]['d'].encode()).hexdigest()=='47f6b0fa9636dabefaf88b5558410622958f2f56783074c0d77edea549e77a55'
 for name,size in [('badge-512.png',512),('badge-slant-512.png',512),('favicon.png',32),('touch-icon.png',180)]:
     assert struct.unpack('>II',(root/'assets'/name).read_bytes()[16:24])==(size,size)
-assert json.loads((root/'config/site.json').read_text())['CANONICAL_ORIGIN'] is None
+origin=json.loads((root/'config/site.json').read_text())['CANONICAL_ORIGIN']
+assert origin is None or re.fullmatch(r'https://[a-z0-9.-]+',origin)
 for p in root.glob('*.html'):
     s=p.read_text()
     assert 'example.invalid' not in s

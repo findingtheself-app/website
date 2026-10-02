@@ -3,6 +3,8 @@
 // [PLACEHOLDER] Configure all values privately after approval; never commit secrets.
 return [
     'enabled' => false,
+    'transport' => 'smtp',
+    'smtp' => ['host'=>'', 'port'=>587, 'username'=>'', 'password'=>'', 'from'=>''],
     'owner_email' => 'OWNER_EMAIL',
     'from_email' => 'FROM_EMAIL',
     'origin' => '',

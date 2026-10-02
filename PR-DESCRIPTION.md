@@ -12,6 +12,12 @@ Not published. Awaiting both founders’ approval. This remains a draft on `draf
 - Privacy notice, security headers/CSP, local social assets, robots, 404 and signup response pages remain. One unset `CANONICAL_ORIGIN` constant controls future metadata/sitemap; no domain is guessed.
 - Removed tracked `review/`. Screenshots are attached below; audit output and test dependencies stay outside the repository and FINAL release zip.
 
+## Round 4 readiness
+
+Authenticated SMTP is configured privately; the readiness test returned `250 2.0.0 Ok: queued as EA94E18001C0` and the owner confirmed arrival. 32 signup tests and 7 SMTP protocol/config tests pass, with both PHP modules linted on PHP 8.3. The candidate includes the approved privacy wording and public contact, a link to the signed native form and real public canonical/social metadata. Noindex is retained. The owner directly authorised publication after these changes. SMTP credentials, infrastructure identifiers and recipient configuration remain private.
+
+The prior plain-mail path differed from the working authenticated method. Exact missing-mail cause remains unproven because mail-server logs were unreadable. SPF/DMARC records exist; DKIM and received authentication pass status remain unverified. No DNS or mail-routing changes were made.
+
 ## Round 3 staging and checks
 
 Hosting access checked. Details are kept in the private notes, not in this repo.

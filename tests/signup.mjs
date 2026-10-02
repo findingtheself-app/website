@@ -13,7 +13,7 @@ const {loadNodeRuntime,createNodeFsMountHandler}=require(modules?path.join(modul
 const root=fs.mkdtempSync(path.join(os.tmpdir(),'self-signup-test-'));
 const pub=path.join(root,'public_html'), priv=path.join(root,'self-private'),data=path.join(priv,'data');
 fs.mkdirSync(pub);fs.mkdirSync(data,{recursive:true,mode:0o700});
-for(const file of ['signup.php','index.html','signup-error.html'])fs.copyFileSync(new URL('../'+file,import.meta.url),path.join(pub,file));
+for(const file of ['signup.php','mail-transport.php','index.html','signup-error.html'])fs.copyFileSync(new URL('../'+file,import.meta.url),path.join(pub,file));
 const config=path.join(priv,'signup-config.php'),secret=crypto.randomBytes(32).toString('hex'),salt=crypto.randomBytes(32).toString('hex');
 const goodConfig={enabled:true,owner_email:'owner@example.invalid',from_email:'sender@example.invalid',origin:'https://example.invalid',token_secret:secret,ip_salt:salt,data_dir:data};
 const setConfig=(values)=>fs.writeFileSync(config,'<?php return json_decode('+JSON.stringify(JSON.stringify(values))+',true);',{mode:0o600});
@@ -32,6 +32,11 @@ try{
  await check('Missing configuration fails closed',async()=>assert.equal((await request()).httpStatusCode,503));
  setConfig({...goodConfig,enabled:false});
  await check('Explicitly disabled configuration fails closed',async()=>assert.equal((await request()).httpStatusCode,503));
+ setConfig({...goodConfig,token_secret:''});
+ setConfig({...goodConfig,transport:'unknown'});
+ await check('Unknown transport fails closed',async()=>assert.equal((await request()).httpStatusCode,503));
+ setConfig({...goodConfig,transport:'smtp',smtp:{}});
+ await check('Incomplete SMTP configuration fails closed',async()=>assert.equal((await request()).httpStatusCode,503));
  setConfig({...goodConfig,token_secret:''});
  await check('Incomplete configuration fails closed',async()=>assert.equal((await request()).httpStatusCode,503));
  setConfig({...goodConfig,data_dir:pub});

@@ -66,3 +66,11 @@ Live file checksums match the pre-check snapshot. Nothing was switched live, mer
 Rollback now: remove the isolated staged release; the live site needs no restoration because it was not replaced. If a later authorised release needs rollback, restore the saved pre-release backup under a separate authorised operation. Private notes record the locations and checksums.
 
 Older commits still contain the earlier hosting wording. A normal commit removed it from the current files; no history rewrite or force-push occurred.
+
+## Round 4 mail fix
+
+The previous plain-mail test did not use the working authenticated SMTP method. Exact rejection/loss cause cannot be established because readable mail-server logs were unavailable. SMTP now uses TLS with certificate verification, authentication, explicit From and a matching envelope sender. Submission fields appear only in the message body, except validated Reply-To. Errors contain generic codes; no SMTP credentials or raw replies are logged by signup.
+
+One SMTP readiness test returned `250 2.0.0 Ok: queued as EA94E18001C0`; the owner confirmed arrival. SPF and DMARC records exist for the private sender domain. DKIM was not found at the provider’s standard selectors; actual DKIM and received SPF/DMARC pass status remain unverified without received authentication headers. No DNS or mail-routing changes were made.
+
+32 isolated signup cases and 7 SMTP response/configuration cases pass. Both PHP modules lint successfully on PHP 8.3. The homepage opens the signed native form. Public canonical/social metadata is rendered from the supplied public origin while noindex remains. Approved public contact and 30-day retention/withdrawal wording are included in the privacy notice.

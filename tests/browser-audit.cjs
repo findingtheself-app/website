@@ -10,7 +10,7 @@ for(const width of [320,390,640,768,1280]){
  const page=await browser.newPage({viewport:{width,height:900},reducedMotion:'reduce',bypassCSP:true});
  const external=[];page.on('request',r=>{if(!r.url().startsWith('http://127.0.0.1:8765'))external.push(r.url())});
  await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
- const layout=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,h1:document.querySelectorAll('h1').length,cookies:document.cookie,localStorage:localStorage.length,disabled:document.querySelector('fieldset').disabled,animated:[...document.querySelectorAll('svg')].some(e=>getComputedStyle(e).animationName!=='none')}));
+ const layout=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,h1:document.querySelectorAll('h1').length,cookies:document.cookie,localStorage:localStorage.length,signupUsesSignedRoute:!!document.querySelector('#signup-open[href="signup.php"]'),animated:[...document.querySelectorAll('svg')].some(e=>getComputedStyle(e).animationName!=='none')}));
  await page.addScriptTag({content:fs.readFileSync(path.join(process.env.SELF_TEST_MODULES,'axe-core/axe.min.js'),'utf8')});
  const audit=await page.evaluate(async()=>await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa','best-practice']}}));
  results.push({width,...layout,external,violations:audit.violations.map(v=>({id:v.id,impact:v.impact,description:v.description,nodes:v.nodes.map(n=>({html:n.html,summary:n.failureSummary}))})),incomplete:audit.incomplete.map(v=>({id:v.id,nodes:v.nodes.length}))});

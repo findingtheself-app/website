@@ -244,3 +244,5 @@ main{overflow:clip}
 @media(max-width:700px){.privacy-band{padding-block:52px;margin-bottom:58px}.privacy-band .privacy-section{gap:30px}.privacy-band .privacy-art{min-height:410px}}
 .privacy-band h2 em{color:var(--cream)}
 .privacy-band .privacy-art>.zen{stroke:var(--cream);opacity:.18}
+
+.form-card>h3{font-size:26px;margin-bottom:18px}.form-card>p:not(.form-privacy){font-size:14px;margin-bottom:26px;color:var(--muted)}

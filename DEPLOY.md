@@ -49,3 +49,11 @@ Rate limits allow three accepted attempts per 24-hour window per salted HMAC of 
 Serve the repository locally, for example `python3 -m http.server 8765 --bind 127.0.0.1`. Do not use a static server to claim PHP or security-header behaviour. PHP WebAssembly tests run against temporary local files only. For `tests/signup.mjs`, install `@php-wasm/node` and `@php-wasm/universal` in a temporary dependency directory and run with `SELF_TEST_MODULES=/path/to/node_modules node tests/signup.mjs`.
 
 Browser audit tooling uses Playwright, axe-core and Lighthouse installed outside this repository. Axe injection requires test-only CSP bypass; the website retains `script-src 'none'`. Lighthouse uses the actual page policy. Scores and limits are in `TEST-RESULTS.md`. Screenshots and full reports are generated outside the repo at `SELF_AUDIT_OUTPUT`, or the temporary `self-website-audits` directory by default. The `review/` folder is removed. Key results belong in the PR description; screenshot attachments require a signed-in GitHub browser session.
+
+## Round 4 release preparation
+
+The owner confirmed SMTP readiness-test arrival and directly authorised publication after the approved privacy wording is included. The candidate uses authenticated SMTP from private config with an explicit sender and matching envelope sender. The homepage opens the native signed-token form; no static POST without a fresh token is enabled. Noindex remains. The PHP mail module is a runtime dependency and must be included in the FINAL zip.
+
+Private SMTP settings, credentials, recipient details and operational locations must stay outside this repo. The owner separately authorised a public contact in the privacy notice; that published contact is the sole exception to the earlier address restriction.
+
+Process withdrawals on receipt so no further messages are sent; delete list records and related notification copies within the approved 30-day period. After launch emails finish, delete the list within 30 days. Keep list data out of release backups. Hourly cleanup removes expired rate/replay records; it does not replace these owner-managed deletion duties.

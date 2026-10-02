@@ -22,3 +22,7 @@ ErrorDocument 404 /404.html
 </IfModule>
 # PHP expose_php must be Off in Hostinger's PHP settings. Do not add php_flag
 # directives to a PHP-FPM/LiteSpeed setup: unsupported directives can cause 500s.
+
+<Files "mail-transport.php">
+    Require all denied
+</Files>
