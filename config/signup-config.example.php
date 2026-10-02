@@ -1,0 +1,14 @@
+<?php
+// Template only. Copy outside the website’s public directory.
+// [PLACEHOLDER] Configure all values privately after approval; never commit secrets.
+return [
+    'enabled' => false,
+    'transport' => 'smtp',
+    'smtp' => ['host'=>'', 'port'=>587, 'username'=>'', 'password'=>'', 'from'=>''],
+    'owner_email' => 'OWNER_EMAIL',
+    'from_email' => 'FROM_EMAIL',
+    'origin' => '',
+    'token_secret' => '', // Generate independently with random_bytes(32), encode as hex.
+    'ip_salt' => '', // Generate independently; different from token_secret.
+    'data_dir' => '/ABSOLUTE/PRIVATE/PATH/self-private/data',
+];
