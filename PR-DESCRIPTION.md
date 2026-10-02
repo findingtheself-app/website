@@ -1,69 +1,46 @@
-The initial public website adds the .self v2.1 design and a disabled PHP signup path. This revision preserves the existing section structure and implements the supplied PR #1 fixes: exact badge artwork, restored privacy wording, unclipped phone illustrations and a consistent footer.
+The .self website is live after the owner’s direct instruction, confirmed SMTP readiness delivery and approved privacy wording. Signup is enabled through the signed native PHP route. PR #1 remains draft and unmerged; main, Pages, DNS and email routing are unchanged. Noindex remains.
 
-Not published. Awaiting both founders’ approval. This remains a draft on `draft/self-website-v2-1`.
+## Current changes and results
 
-## Changes
+- Authenticated TLS SMTP from private config, with explicit From and matching envelope sender. The readiness test returned `250 2.0.0 Ok: queued as EA94E18001C0`; the owner confirmed arrival. No new password request was needed.
+- The earlier plain-mail path differed from the working SMTP method. Exact missing-mail cause is not proven because readable mail-server logs were unavailable. SPF/DMARC records exist; DKIM and received authentication pass results remain unverified. No DNS or routing changes were made.
+- Approved controller/public-contact and 30-day retention/withdrawal wording in the privacy notice, lowercase .self throughout. The approved public contact is the sole exception to the earlier address restriction. Recipient configuration, SMTP credentials and infrastructure details remain private.
+- Public canonical/social metadata uses the supplied public origin; noindex retained. Homepage opens the signed native form. No submitted details are reflected in responses.
+- 32 signup tests and 7 SMTP protocol/config tests pass. Both PHP modules lint on PHP 8.3. Live Chrome checks at 390/1280px pass for home, privacy, thank-you and signup: no mixed content, overflow, page errors, cookies or local storage; zero automated axe violations. Local Lighthouse: 100/100/100/69, with crawlability intentionally blocked.
+- Real live test: HTTPS 200, one record saved privately with mode 600, no mail failure entry; separate arrival confirmation pending. Forged submit: clean 403, no reflection. Exactly two test messages this round; no further messages sent.
+- Fresh private backup taken before publication. Runtime-only FINAL zip contains 20 files; docs, tests, screenshots, review output, secrets and private config excluded. HTTPS pages, CSP, frame denial, nosniff, noindex, hidden PHP version header and denied direct mail-module access verified.
 
-- Exact supplied lowercase `.self` glyph paths in white/plum, straight and 3° clockwise slanted badges, 512px PNGs and matching favicon/touch assets. Header 44px, footer 36px and the plum roadmap tile uses a cream outlined badge; the forest tile is text only; running text remains `.self`. Clearspace and minimum-size rules are documented. Straight SVG 1,906 bytes; slanted SVG 1,947 bytes.
-- Removed arrows and visible draft/preview status wording; retained noindex, illustration labels, planned date, legal placeholders and closed signup status.
-- Hero note sits below the phone without covering Today text. Food and Movement screens show their full content; Stillness shows 10:00. Footer aligns consistently and reads `© 2026 findingtheself`.
-- Restored the supplied on-device journal privacy wording, including phrase loss and unlocked-device limits. Founder confirmation against security-design.md remains required; the private app repo was not accessed and no independent crypto audit is claimed.
-- Native signup and PHP route remain independently disabled. Signed time tokens, exact origin, consent/version, honeypot, replay protection, salted-hash rate limiting and private 600-permission persistence remain in place. No real addresses or secrets added.
-- Privacy notice, security headers/CSP, local social assets, robots, 404 and signup response pages remain. One unset `CANONICAL_ORIGIN` constant controls future metadata/sitemap; no domain is guessed.
-- Removed tracked `review/`. Screenshots are attached below; audit output and test dependencies stay outside the repository and FINAL release zip.
+Rollback: restore the private pre-release site backup and disabled signup config.
 
-## Round 4 readiness
+Hosting access checked. Details are kept in the private notes, not in this repo. Older commits still hold earlier hosting wording; normal commits were added without rewriting history or force-pushing. Live runtime changes are in commits `db58f5e` and `e7e9904`.
 
-Authenticated SMTP is configured privately; the readiness test returned `250 2.0.0 Ok: queued as EA94E18001C0` and the owner confirmed arrival. 32 signup tests and 7 SMTP protocol/config tests pass, with both PHP modules linted on PHP 8.3. The candidate includes the approved privacy wording and public contact, a link to the signed native form and real public canonical/social metadata. Noindex is retained. The owner directly authorised publication after these changes. SMTP credentials, infrastructure identifiers and recipient configuration remain private.
+Remaining limits: full assistive-technology sign-off, received authentication results and provider processing/location details remain review items. Rate expiry is request-driven because the hourly scheduler is unavailable through SSH; the notice accurately states idle records can remain until the next request. Owner-managed withdrawal, list retention and notification deletion duties remain.
 
-The prior plain-mail path differed from the working authenticated method. Exact missing-mail cause remains unproven because mail-server logs were unreadable. SPF/DMARC records exist; DKIM and received authentication pass status remain unverified. No DNS or mail-routing changes were made.
+## Live HTTPS screenshots
 
-## Round 3 staging and checks
+Captured in Chrome after publication. Empty fields are shown; no personal submission data is pictured.
 
-Hosting access checked. Details are kept in the private notes, not in this repo.
+<details><summary>Live 390px: hero, signup card and signed form</summary>
 
-Web PHP 8.3.33 matches CLI PHP 8.3.33. The web mail function is available. One authorised test message returned: sent. The unguessable temporary PHP probe printed only version and mail availability, was immediately deleted, and returned HTTPS 404 on the removal check. No phpinfo or private configuration values were exposed.
+![Hero at 390px](https://github.com/user-attachments/assets/80943a7f-34eb-4945-9f9d-8621aa19bb77)
 
-A backup of the existing live site is stored in a restricted private backup area outside the public directory. The runtime-only FINAL zip and extracted release are in a separate restricted staging area outside the public directory. The zip checksum matches after upload. It contains 19 runtime files and excludes docs, tests, review output, screenshots, private configuration and secrets. Noindex and the disabled form are retained; the private configuration is unchanged with enabled=false.
+![Signup card at 390px](https://github.com/user-attachments/assets/f4a78a43-4670-4c27-bf27-7c2355f0e5c8)
 
-Live file checksums match the pre-check snapshot. Nothing was switched live, merged, pushed to main, or enabled. No Pages, CNAME, DNS or email-routing change occurred. Staging does not itself publish anything. Switching live and enabling signup wait for a separate direct go from the owner; approval records are maintained outside this repo.
+![Signed form at 390px](https://github.com/user-attachments/assets/734cb75b-ea2b-42e9-aec2-357f81ff1003)
 
-Rollback now: remove the isolated staged release; the live site needs no restoration because it was not replaced. If a later authorised release needs rollback, restore the saved pre-release backup under a separate authorised operation. Private notes record the locations and checksums.
+</details>
 
-Older commits still contain the earlier hosting wording. A normal commit removed it from the current files; no history rewrite or force-push occurred.
+<details><summary>Live 1280px: hero, signup card and signed form</summary>
 
-## Round 2 completion
+![Hero at 1280px](https://github.com/user-attachments/assets/6da2267d-1483-4dd3-94f5-23b7f5652420)
 
-- Lowercase `.self` throughout pages, metadata, accessibility names, PHP messages and notification content, docs and the local OG image. Stable code paths and environment names retained. Repository scan found no capitalised product-name occurrences.
-- Recovery caption removed; in-screen safety wording retained. No illustration caption intersects a phone tab bar at 390/768/1280px.
-- One large slanted, thin cream outlined badge on plum; forest tile text only. The badge can be restored using the documented markup location. Copy retained.
-- Dark forest privacy band with exactly the existing wording in plain steps 1 to 4, honest limits and privacy-notice link. Pale text contrast is 8.33:1. No new claims added.
-- Footer lockup gap reduced to 5px and alignment inspected at all three widths.
-- All 30 PHP cases, static checks, reflow and automated accessibility checks re-run successfully. Lighthouse remains 100/100/100/66 on mobile and desktop; indexing is intentionally blocked.
+![Signup card at 1280px](https://github.com/user-attachments/assets/3d37cfb2-f8e0-4baa-bbdb-53584fe7b14f)
 
-The original v2 zip is unavailable, so exact restoration could not be verified. The user explicitly authorised recreation from the current page; founders have not approved its design or tile choice.
+![Signed form at 1280px](https://github.com/user-attachments/assets/e2c0272a-3942-43de-85ac-0a6ef08cc4cd)
 
-Earlier CLI checks confirmed PHP 8.3.33 and mail-function availability; the current web and mail results are recorded above. After explicit user authorisation, a private config was created outside the website’s public directory with the supplied recipient, enabled=false and permissions 600. Other necessary configuration values remain unset. Recipient details are absent from the repository, tests, documentation and PR. This config does not authorise collection or mailbox routing; board CHANGE 0.1.16 remains pending. Public server files and the live website are unchanged.
+</details>
 
-## Validation
-
-| Check | Result |
-| --- | --- |
-| Lighthouse mobile and desktop | Performance 100 / Accessibility 100 / Best practices 100 / SEO 66 |
-| SEO limitation | Required noindex/robots block fails crawlability; all other applicable SEO checks pass |
-| Axe | Zero automated violations on home at 320/390/640/768/1280px and supporting pages at 390px |
-| Layout | No overflow/clipped headings at 320/390/640/768/900/1280px; hero text overlap, phone completeness and footer alignment checks pass at 390/768/1280px |
-| Keyboard/motion/storage | Skip link and visible focus pass; reduced motion disables animation; no external page requests, cookies or local storage |
-| Signup | 30 isolated PHP 8.3 cases pass, including disabled guard, tokens, origin, consent, replay, rate limits and persistence with mail unavailable |
-| Static/brand | Exact glyph paths, path-only SVGs, icon dimensions, names/copy, arrows, local links/assets, noindex/CSP and disabled configuration pass |
-| PHP lint | PHP 8.3 host lint passes through stdin without remote file writes |
-| CSS | 16,740 bytes |
-
-Axe incomplete contrast checks were manually inspected with calculated palette contrast; they are not automated passes or WCAG certification. 640 CSS pixel reflow was checked as a 200% equivalent. Native browser zoom and screen-reader sign-off remain manual. See TEST-RESULTS.md for reproduction and limitations.
-
-Read-only SSH reached the actual .self web-root. PHP 8.3.33 and the mail function are available in CLI; receipt of the test message, staged web headers and trusted client-address handling remain unverified. The earlier read-only CLI checks wrote no server files. Round 3 performed the separately authorised probe and isolated staging described above.
-
-## Screenshots
+## Earlier design screenshots
 
 Round 2 captures: header, hero, tiles, privacy band and footer at each requested viewport.
 
@@ -109,30 +86,11 @@ Round 2 captures: header, hero, tiles, privacy band and footer at each requested
 
 </details>
 
-## Release boundary
-
-The live Hostinger site is unchanged. No merge, live deployment, Pages, CNAME, DNS/email routing or mailbox changes occurred. Signup remains off for board CHANGE 0.1.16. A separate direct live-switch and collection decision is required. A runtime-only FINAL zip is prepared for non-live staging; founder approval is still pending.
 
 ## Every remaining [PLACEHOLDER]
 
-- [PLACEHOLDER] Domain decision: set `CANONICAL_ORIGIN` in `config/site.json` only after approval, then render metadata/sitemap with `tests/render-metadata.py`. It is currently null; no domain is guessed. Keep indexing blocked until approved launch.
-- [PLACEHOLDER] Both founders to confirm “Now and next” wording, including the planned date, sign-in/sync and later Gather scope.
-- [PLACEHOLDER] founders to confirm privacy wording against security-design.md before launch. Supplied on-device wording is restored; no private app access or independent crypto audit occurred.
-- [PLACEHOLDER] Confirm `findingtheself` as the future company name; footer copyright does not resolve the legal-controller placeholder.
-- [PLACEHOLDER] Legal entity/controller and contact address.
-- [PLACEHOLDER] Hostinger’s own access logs, processing and retention; do not equate application-level hashed rate data with no host-level logging.
-- [PLACEHOLDER] Hostinger processor approval for hosting and mail delivery, and processor terms.
-- [PLACEHOLDER] Hosting region, mailbox storage region, international transfers/safeguards and authorised readers of the list and mailbox.
-- [PLACEHOLDER] Cleanup schedule and maximum physical retention of expired rate records.
-- [PLACEHOLDER] Retention period after launch.
-- [PLACEHOLDER] Deletion timing, backups and the minimal withdrawal record, if required.
-- [PLACEHOLDER] Unsubscribe contact address and tested withdrawal process before first collection or email.
-- [PLACEHOLDER] Rights-request contact address and procedure.
-- [PLACEHOLDER] Private configuration values: `OWNER_EMAIL`, `FROM_EMAIL`, approved HTTPS origin, private data path, independently generated token secret and IP salt. The enabled flag remains false.
-- [PLACEHOLDER] Founder confirmation of one outlined badge on the plum tile and a text-only forest tile.
-- [PLACEHOLDER] Original v2 draft zip is unavailable; user authorised recreation from the current page. Founders still need to approve the visual layout.
-- [PLACEHOLDER] Board approval of temporary signup-mail routing; recipient remains a private configuration decision and signup stays disabled.
-
-Additional approval/validation gates without invented values: unsigned team copy, visual design, .self web PHP 8.3, host mail behaviour, live security headers, cleanup schedule, rate-data physical retention, list deletion procedure, trusted client-address setup, and final manual assistive-technology review. Both founders’ board approval and explicit deployment authorisation remain required.
-
-Hosting access checked. Details are kept in the private notes, not in this repo. Older commits still contain the previous hosting wording; this normal commit does not rewrite history.
+- [PLACEHOLDER] Before app launch, confirm the supplied on-device journal wording against security-design.md. No private app access or independent crypto audit occurred.
+- [PLACEHOLDER] Confirm the hosting provider’s access-log processing and retention; application-level hashed rate data does not imply no host logging.
+- [PLACEHOLDER] Confirm hosting/mailbox regions, international transfers and safeguards, and maintain the list of authorised readers.
+- [PLACEHOLDER] Obtain received authentication results to verify SPF, DKIM and DMARC pass status. SPF/DMARC records exist; standard DKIM selectors were not found.
+- [PLACEHOLDER] Complete manual assistive-technology sign-off beyond automated audits.

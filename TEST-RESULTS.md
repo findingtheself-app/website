@@ -74,3 +74,13 @@ The previous plain-mail test did not use the working authenticated SMTP method. 
 One SMTP readiness test returned `250 2.0.0 Ok: queued as EA94E18001C0`; the owner confirmed arrival. SPF and DMARC records exist for the private sender domain. DKIM was not found at the provider’s standard selectors; actual DKIM and received SPF/DMARC pass status remain unverified without received authentication headers. No DNS or mail-routing changes were made.
 
 32 isolated signup cases and 7 SMTP response/configuration cases pass. Both PHP modules lint successfully on PHP 8.3. The homepage opens the signed native form. Public canonical/social metadata is rendered from the supplied public origin while noindex remains. Approved public contact and 30-day retention/withdrawal wording are included in the privacy notice.
+
+## Live verification, 2 October 2026
+
+Owner-confirmed SMTP readiness delivery preceded the direct go-live instruction. The runtime-only FINAL zip was published after a fresh backup. Signup is enabled; noindex remains. Home, privacy, thank-you and the signed native form return HTTPS 200. CSP, frame denial, nosniff, referrer and indexing headers are present; X-Powered-By is absent. Direct mail-module requests are denied. Canonical and social metadata uses the supplied public origin, with no dummy domain.
+
+A real test signup returned 200, saved one private record with mode 600 and completed SMTP without a failure entry. A forged request returned 403 with a generic response and no reflection of submitted email. Two messages total were tested in this round: the first was confirmed received; the live signup message awaits separate arrival confirmation. No more messages were sent.
+
+Chrome verification at 390 and 1280px passes for home, privacy, thank-you and the signed form: zero automated axe violations, no mixed content, horizontal overflow, cookies or local storage, and no page errors. Empty form fields and headers were checked. Screenshots remain outside the repo. Local Lighthouse is 100 performance / 100 accessibility / 100 best practices / 69 SEO on both profiles; SEO remains limited by required noindex. Browser screen-reader sign-off and received authentication headers are not claimed.
+
+Hourly cleanup could not be configured through the host’s SSH environment. The published notice therefore accurately describes request-driven expiry and possible idle overhang, rather than promising a scheduler. The private maintenance script is available. The owner’s approved list and withdrawal periods are preserved; deleting list entries and notification copies remains an owner-managed operational duty.

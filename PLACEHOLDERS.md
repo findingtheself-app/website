@@ -1,31 +1,17 @@
-# Remaining decisions
+# Remaining verification and operational decisions
 
-Not published. Awaiting a separate direct live-switch and collection decision. The page has no draft-status banner; this does not authorise publication or collection.
+Published on 2 October 2026 after the owner’s direct go and confirmed SMTP readiness delivery. Signup is enabled; noindex remains. PR #1 stays draft and unmerged.
 
-Every visible or code-comment [PLACEHOLDER] is grouped below; the same decisions appear on multiple pages through shared metadata. All must be resolved before collection/publication as applicable.
+- [PLACEHOLDER] Before app launch, confirm the supplied on-device journal wording against security-design.md. No private app access or independent crypto audit occurred.
+- [PLACEHOLDER] Confirm the hosting provider’s access-log processing and retention; application-level hashed rate data does not imply no host logging.
+- [PLACEHOLDER] Confirm hosting/mailbox regions, international transfers and safeguards, and maintain the list of authorised readers.
+- [PLACEHOLDER] Obtain received authentication results to verify SPF, DKIM and DMARC pass status. SPF/DMARC records exist; standard DKIM selectors were not found.
+- [PLACEHOLDER] Complete manual assistive-technology sign-off beyond automated audits.
 
-- [PLACEHOLDER] Both founders to confirm “Now and next” wording, including the planned date, sign-in/sync and later Gather scope.
-- [PLACEHOLDER] founders to confirm privacy wording against security-design.md before launch. Supplied on-device wording is restored; no private app access or independent crypto audit occurred.
-- [PLACEHOLDER] Confirm `findingtheself` as the future company name; footer copyright does not resolve the legal-controller placeholder.
-- [PLACEHOLDER] Legal entity/controller and contact address.
-- [PLACEHOLDER] Hostinger’s own access logs, processing and retention; do not equate application-level hashed rate data with no host-level logging.
-- [PLACEHOLDER] Hostinger processor approval for hosting and mail delivery, and processor terms.
-- [PLACEHOLDER] Hosting region, mailbox storage region, international transfers/safeguards and authorised readers of the list and mailbox.
-- [PLACEHOLDER] Cleanup schedule and maximum physical retention of expired rate records.
-- [PLACEHOLDER] Retention period after launch.
-- [PLACEHOLDER] Deletion timing, backups and the minimal withdrawal record, if required.
-- [PLACEHOLDER] Unsubscribe contact address and tested withdrawal process before first collection or email.
-- [PLACEHOLDER] Rights-request contact address and procedure.
-- [PLACEHOLDER] Private configuration values: `OWNER_EMAIL`, `FROM_EMAIL`, approved HTTPS origin, private data path, independently generated token secret and IP salt. The enabled flag remains false.
+The owner approved publication, the current layout, controller/public contact, retention and withdrawal wording, and signup operation. The original v2 zip remains unavailable; the recreated privacy-band layout is not claimed as an exact reproduction. Roadmap dates and future features remain qualified in the published copy.
 
-- [PLACEHOLDER] Founder confirmation of one outlined badge on the plum tile and a text-only forest tile.
-- [PLACEHOLDER] Original v2 draft zip is unavailable; user authorised recreation from the current page. Founders still need to approve the visual layout.
-- [PLACEHOLDER] Board approval of temporary signup-mail routing; recipient remains a private configuration decision and signup stays disabled.
+The private SMTP and signup configuration is complete on the server. The public example intentionally remains disabled and contains only empty configuration placeholders. No private credentials, recipient configuration or infrastructure identifiers are committed. The owner expressly approved the public contact in the privacy notice as the sole address exception.
 
-Additional approval/validation gates without invented values: unsigned team copy, visual design, .self live security headers, mailbox receipt, cleanup schedule, rate-data physical retention, list deletion procedure, trusted client-address setup, and final manual assistive-technology review. Both founders’ board approval and explicit deployment authorisation remain required.
+Operational duties: remove withdrawals from future mailings on receipt, delete list records and related notifications within the approved 30-day period, and delete the list within 30 days after launch emails finish. Rate/replay expiry is request-driven; no hourly scheduler is configured through SSH. A private maintenance script is available for owner-managed cleanup.
 
-Hosting access checked. Details are kept in the private notes, not in this repo. Older commits retain prior hosting wording; history has not been rewritten.
-
-Web PHP 8.3.33 and mail-function availability were verified. One mail test returned sent; the probe is deleted and returns 404. Isolated staging and the pre-release backup are outside the public directory. Live files and the disabled private config are unchanged.
-
-The public canonical origin is now set from the supplied release brief; metadata and sitemap have been rendered. Noindex remains. Private infrastructure identifiers and mail settings remain only in private config.
+Hosting access checked. Details are kept in the private notes, not in this repo. Older commits retain earlier hosting wording; history was not rewritten.

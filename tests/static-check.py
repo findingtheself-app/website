@@ -35,7 +35,7 @@ assert "'enabled' => false" in (root/'config/signup-config.example.php').read_te
 assert 'Disallow: /' in (root/'robots.txt').read_text()
 ET.parse(root/'sitemap.xml')
 assert struct.unpack('>II',(root/'assets/og.png').read_bytes()[16:24])==(1200,630)
-print('PASS: headings, landmarks, locale, noindex, CSP, local assets, links, decorative SVG, brand colours, CSS budget, disabled form/config, robots, sitemap, OG dimensions')
+print('PASS: headings, landmarks, locale, noindex, CSP, local assets, links, decorative SVG, brand colours, CSS budget, signed native route and disabled config template, robots, sitemap, OG dimensions')
 
 # Brand assets must retain the supplied glyph outlines, not live font text.
 ns={'s':'http://www.w3.org/2000/svg'}
@@ -65,7 +65,7 @@ for p in root.glob('*.html'):
     assert '© 2026 findingtheself' in s
 assert 'AES-256-GCM' in (root/'index.html').read_text() and 'Argon2id' in (root/'index.html').read_text()
 assert not (root/'review').exists()
-print('PASS: exact outlined badge paths, SVG safety, PNG sizes, unified origin constant, arrows/status removed, badge usage, privacy wording, review files absent')
+print('PASS: exact outlined badge paths, SVG safety, PNG sizes, approved origin constant, arrows/status removed, badge usage, privacy wording, review files absent')
 
 for p in root.rglob("*"):
     if p.is_file() and ".git" not in p.parts and p.suffix in {".html",".php",".md",".svg"}:
